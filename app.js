@@ -21,7 +21,7 @@ var statsObject = {}
 var initTime = Date.now()
 var counter = 0;
 var weight = 0; // variable to count how many multiples of the big interals have passed.
-var keywords = ["i"]
+var keywords = ["revenant"]
 var regexp = new RegExp(keywords[0])
 
 var countArray = [ ];
