@@ -31,7 +31,7 @@ function averageCount(context, countArray){
    var sum = R.reduce(function(a,b) {
      return a + b
    }, 0, countArray)
-   context === 'non-square' ? statsObject.currentAverage = sum / countArray.length : statsObject.currentSquaresAverage = sum / countArray.length
+   context === 'non-square' ? statsObject.currentAverage = sum / countArray.length : statsObject.currentSquareAverage = sum / countArray.length
    return statsObject
 }
 
@@ -41,8 +41,9 @@ function stdevCount(average, countArray){
   var arraySquares = R.map(function(x){
     return x * x
   }, countArray)
-  var averageOfSquares = R.prop('currentSquaresAverage', averageCount('squares', arraySquares))
+  var averageOfSquares = R.prop('currentSquareAverage', averageCount('squares', arraySquares))
   statsObject.currentAverageOfSquares = averageOfSquares;
+  statsObject.squareOfAverage = squareOfAverage;
   statsObject.currentStdev = Math.sqrt(averageOfSquares - squareOfAverage)
   return statsObject
 }
@@ -68,11 +69,12 @@ if (statsObject.runningAverage === undefined ) {
     }
       statsObject.runningAverage = (currentAverage + statsObject.runningAverage * weight) / (weight + 1)
 
-  // if (statsObject.runningStdev === undefined ) {
-  //       statsObject.runningStdev = 0;
-  //     }
-  //     statsObject.runningAverageSquared = (currentAverageOfSquares + statsObject.runningAverageOfSquares * weight) / (weight + 1);
-
+   if (statsObject.runningAverageOfSquares === undefined ) {
+         statsObject.runningStdev = 0;
+         statsObject.runningAverageOfSquares = 0;
+       }
+      statsObject.runningAverageOfSquares = (statsObject.currentAverageOfSquares + statsObject.runningAverageOfSquares * weight) / (weight + 1);
+      statsObject.runningStdev = Math.sqrt(statsObject.runningAverageOfSquares-statsObject.runningAverage * statsObject.runningAverage)
       weight = weight + 1
 
 countArray = [ ]
