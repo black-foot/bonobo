@@ -1,0 +1,18 @@
+{
+	"twitterKeys": {
+		"TWITTER_CONSUMER_KEY": "put-key-here",
+		"TWITTER_CONSUMER_SECRET": "put-key-here",
+		"TWITTER_ACCESS_TOKEN_KEY": "put-key-here",
+		"TWITTER_ACCESS_TOKEN_SECRET": "put-key-here"
+	},
+	"locations": {
+  	"london": "51.2,-0.49,51.7,0.13",
+  	"sanFran": "-122.75,36.8,-121.75,37.8",
+  	"everywhere": "-180,-90,180,90"
+	},
+	"app": {
+		"port": 8080
+	},
+	"counterInterval": 5000,
+	"maxIntervals": 5
+}
