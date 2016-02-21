@@ -21,10 +21,11 @@ var statsObject = {}
 var initTime = Date.now()
 var counter = 0;
 var weight = 0; // variable to count how many multiples of the big interals have passed.
-var keywords = ["revenant"]
+var keywords = ["i"]
 var regexp = new RegExp(keywords[0])
 
 var countArray = [ ];
+var interval = 5000;
 
 function averageCount(context, countArray){
   // Takes the average of an array of values
@@ -90,7 +91,6 @@ statsObject.currentLimits = {
   }
   return statsObject
 }
-
 
 //Added location "boxes" for easy calling
 var locations = {
