@@ -1,4 +1,3 @@
-'use strict';
 const Twitter = require('twitter');
 const hl = require('highland');
 const R = require('ramda');
@@ -17,24 +16,24 @@ const params = {
   locations: R.prop(utils.getLocation(process.argv[2]), config.locations)
 };
 
-var statsObject = new utils.StatsObject();
+var statsObject = new utils.StatsObject()
 
-client.stream('statuses/filter', params, stream => {
-  stream.on('data', tweet => {
+client.stream('statuses/filter', params, function(stream){
+  stream.on('data', function(tweet) {
     hl([tweet])
       .reject(R.compose(R.isNil, R.path(['geo', 'coordinates'])))
       .reject(R.compose(R.test(/http/), R.prop('text')))
-      .map(tweet => {
+      .map(function(tweet) {
         return {
-         text: tweet.text,
-         coordinates: tweet.geo.coordinates,
+          text: tweet.text,
+          coordinates: tweet.geo.coordinates
         }
       })
       .map(utils.frequencyCounter(statsObject))
-      .errors((err) => console.log(err))
+      .errors(err => console.log(err.message))
       .each(console.log)
   });
-  stream.on('error', error => {
-    console.log(error.message)
-  });
 });
+
+
+//pusher.trigger('test_channel', 'my_event', pusherMan.tweet);
