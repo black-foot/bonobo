@@ -13,10 +13,10 @@ a:hover{
 }
 
 .jumbotron{
-background-image: url("./images/b1.jpg");
-padding-top: 130px;
-padding-bottom:130px;
-padding-left:0px;
+  background-image: url("../images/b1.jpg");
+  padding-top: 130px;
+  padding-bottom:130px;
+  padding-left:0px;
 }
 
 #about .jumbotron{
